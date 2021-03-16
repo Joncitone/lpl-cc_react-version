@@ -1,4 +1,18 @@
 import './App.css';
+import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import {
+  getReactScoreThunk,
+  getReactForksStarsIssuesThunk,
+  getAngularScoreThunk,
+  getAngularForksStarsIssuesThunk,
+  getEmberScoreThunk,
+  getEmberForksStarsIssuesThunk,
+  getVueScoreThunk,
+  getVueForksStarsIssuesThunk,
+} from './store/index.js';
 
 function App() {
   let codeText = '< coding challenge />';
@@ -66,5 +80,52 @@ function App() {
     </div>
   );
 }
+const mapState = (state) => {
+  return {
+    react: state.react,
+    angular: state.angular,
+    ember: state.ember,
+    vue: state.vue,
+  };
+};
 
-export default App;
+const mapDispatch = (dispatch) => {
+  return {
+    getReactScore() {
+      dispatch(getReactScoreThunk());
+    },
+    getAngularScore() {
+      dispatch(getAngularScoreThunk());
+    },
+    getEmberScore() {
+      dispatch(getEmberScoreThunk());
+    },
+    getVueScore() {
+      dispatch(getVueScoreThunk());
+    },
+    getReactForksStarsIssues() {
+      dispatch(getReactForksStarsIssuesThunk());
+    },
+    getAngularForksStarsIssues() {
+      dispatch(getAngularForksStarsIssuesThunk());
+    },
+    getEmberForksStarsIssues() {
+      dispatch(getEmberForksStarsIssuesThunk());
+    },
+    getVueForksStarsIssues() {
+      dispatch(getVueForksStarsIssuesThunk());
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(App);
+
+/**
+ * PROP TYPES
+ */
+App.propTypes = {
+  react: PropTypes.object.isRequired,
+  angular: PropTypes.object.isRequired,
+  ember: PropTypes.object.isRequired,
+  vue: PropTypes.object.isRequired,
+};
