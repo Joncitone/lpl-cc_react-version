@@ -27,6 +27,7 @@ body {
 p {
   padding: none;
   margin: none;
+  text-align: center;
 }
 
 #code-text {
@@ -69,5 +70,9 @@ tbody > tr > td:first-child {
 
 #home-page-header {
   font-size: 2em;
+  text-align: center;
+}
+
+footer {
   text-align: center;
 }
