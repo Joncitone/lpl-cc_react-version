@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# LaunchPad Lab Coding Challenge (react-version)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Deployed Version
 
-## Available Scripts
+### TBD
 
-In the project directory, you can run:
+## Setup
 
-### `yarn start`
+1. ### Fork or Clone the Repo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+  git clone https://github.com/Joncitone/lpl-cc_react-version.git
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. ### Step into the Directory
 
-### `yarn test`
+```
+  cd lpl-cc_react-version/
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. ### Install Dependencies
 
-### `yarn build`
+```
+  npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. ### Launching in the Browser
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+  npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. ### Running Tests
 
-### `yarn eject`
+```
+  npm test
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Redux
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Project Board
+  - Kanban board to plan out the project
+- LaunchPad Lab styling
+  - Proxima-Nova font
+  - Blue linear gradient
+  - Rocketship logo
+- Sorting with visual indicators for ASC/DESC
+  - Classic DOM manipulation
+- Continuous API calls (every 5 minutes)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Metrics & Rationale
 
-### Code Splitting
+Rationale of metrics chosen as indicators of activity, community support, and stability.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Score**: I calculated a score for each framework by combining forks, stars, and open issues.
+  The formula is consistent across frameworks, and can be found as a thunk in the reducer files.
 
-### Analyzing the Bundle Size
+- **Forks**: Forks are a decent indication of code stability, while not all forks are projects that depend on the stability of the repository, a good portion of them are and they will ocassionally update their fork by setting the original as an upstream.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Stars**: Stars are mostly a sign of community support in the form of a social media popularity indicator. Stars are very similar to likes on social media sites, and along with Following are one of the biggest social aspects of Github.
 
-### Making a Progressive Web App
+- **Issues** (open): Issues were a bit tricky, and over the several iterations of this project I switched from closed issues, to total issues, and finally landed on open issues. My decision was based on open issues being a decent sign of activity, while the other forms of issues were more a sign of repository age.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Other Considerations
 
-### Advanced Configuration
+- **Commits**: Like issues, I experimented with commits. First with an array indicating weekly commits over the past year, then with the total number of commits. Ultimately, I decided this was not a good indicator due to Ember being an outlier with an inordinate amount of commits.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **NPM Package Downloads**: I considered adding these metrics to the overall score as they might also be a good indication of development activity. React was very popular here, perhaps due to CRA, Next.js, and Gatsby. In the end I decided against it since it would put React so far ahead.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Angular.js**: The metrics for Angular.js are likely skewed due to it having two major repos: Angular and Angular.js. This split in versions as part of its history is unique to Angular amongst the other frameworks. Due to this, I think a more accurate position based on overall score would be in 2nd-Place. Another consideration would be to use metrics from Angular as opposed to Angular.js since Angular is newer, and would likely be adopted for use in future development over Angular.js.
