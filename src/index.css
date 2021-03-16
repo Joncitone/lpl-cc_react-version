@@ -1,13 +1,72 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'proxima-nova';
+  src: url('proxima-nova.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  background: linear-gradient(to bottom right, #065fae, #25a8e0);
+  height: 100vh;
+  color: white;
+}
+
+body {
+  font-family: 'proxima-nova', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  padding: none;
+  margin: none;
+}
+
+#code-text {
+  font-family: monospace;
+}
+
+table {
+  border: 2px solid white;
+  border-radius: 10px;
+  table-layout: fixed;
+}
+
+th {
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.selected {
+  background-color: white;
+  color: dodgerblue;
+}
+
+#score-header:hover,
+#forks-header:hover,
+#stars-header:hover,
+#issues-header:hover {
+  background-color: darkgray;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+tbody > tr > td:first-child {
+  font-weight: bold;
+}
+
+#home-page-header {
+  font-size: 2em;
+  text-align: center;
 }
