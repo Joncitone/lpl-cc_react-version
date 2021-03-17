@@ -2,7 +2,7 @@
 
 ## Deployed Version
 
-### TBD
+https://lpl-cc-react.herokuapp.com
 
 ## Vanilla JS Version
 
