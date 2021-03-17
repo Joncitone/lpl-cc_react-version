@@ -50,10 +50,7 @@ th {
   color: dodgerblue;
 }
 
-#score-header:hover,
-#forks-header:hover,
-#stars-header:hover,
-#issues-header:hover {
+.category:hover {
   background-color: darkgray;
   cursor: pointer;
 }
