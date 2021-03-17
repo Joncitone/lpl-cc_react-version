@@ -39,6 +39,15 @@ const Home = (props) => {
 
   const [frameworks, setFrameworks] = useState([react, angular, ember, vue]);
 
+  const [scores, setScores] = useState([
+    { name: 'react', score: 0 },
+    { name: 'angular', score: 0 },
+    { name: 'ember', score: 0 },
+    { name: 'vue', score: 0 },
+  ]);
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+
   useEffect(() => {
     //initial API call
     getReactForksStarsIssues();
@@ -52,13 +61,42 @@ const Home = (props) => {
     }, 3000);
   }, []);
 
-  useEffect(() => {}, [frameworks]);
+  useEffect(() => {
+    const scoreVals = frameworks.map((frmwrk) => {
+      return {
+        name: frmwrk.name,
+        score:
+          Math.round(frmwrk.forks / 1000) +
+          Math.round(frmwrk.stars / 10000) +
+          Math.round(frmwrk.issues / 1000),
+      };
+    });
+    setScores([...scoreVals]);
+  }, [frameworks]);
 
   function sortByCondition(toggle, condition) {
-    const sortedFrameworks = frameworks.sort((a, b) => {
-      return toggle ? b[condition] - a[condition] : a[condition] - b[condition];
-    });
+    let sortedFrameworks;
 
+    if (condition === 'score') {
+      const sortedScores = scores.sort((a, b) => {
+        return toggle
+          ? b[condition] - a[condition]
+          : a[condition] - b[condition];
+      });
+      // sort frameworks in same order as sorted array
+      sortedFrameworks = [
+        frameworks.find((f) => f.name === sortedScores[0].name),
+        frameworks.find((f) => f.name === sortedScores[1].name),
+        frameworks.find((f) => f.name === sortedScores[2].name),
+        frameworks.find((f) => f.name === sortedScores[3].name),
+      ];
+    } else {
+      sortedFrameworks = frameworks.sort((a, b) => {
+        return toggle
+          ? b[condition] - a[condition]
+          : a[condition] - b[condition];
+      });
+    }
     console.log(frameworks);
     setFrameworks([...sortedFrameworks]);
   }
@@ -69,6 +107,8 @@ const Home = (props) => {
       ...toggles,
       [category]: !prevToggle,
     });
+
+    setSelectedCategory(category);
 
     sortByCondition(toggles[category], category);
   }
@@ -90,17 +130,86 @@ const Home = (props) => {
             <thead>
               <tr>
                 <th>Framework</th>
-                <th className="category" onClick={() => handleClick('score')}>
+                <th
+                  className={
+                    selectedCategory === 'score'
+                      ? 'selected category'
+                      : 'category'
+                  }
+                  onClick={() => handleClick('score')}
+                >
+                  {' '}
                   Score
+                  {selectedCategory === 'score' && !toggles.score ? (
+                    <> &#9660;</>
+                  ) : (
+                    ''
+                  )}
+                  {selectedCategory === 'score' && toggles.score ? (
+                    <> &#9650;</>
+                  ) : (
+                    ''
+                  )}
                 </th>
-                <th className="category" onClick={() => handleClick('forks')}>
+                <th
+                  className={
+                    selectedCategory === 'forks'
+                      ? 'selected category'
+                      : 'category'
+                  }
+                  onClick={() => handleClick('forks')}
+                >
                   Forks
+                  {selectedCategory === 'forks' && !toggles.forks ? (
+                    <> &#9660;</>
+                  ) : (
+                    ''
+                  )}
+                  {selectedCategory === 'forks' && toggles.forks ? (
+                    <> &#9650;</>
+                  ) : (
+                    ''
+                  )}
                 </th>
-                <th className="category" onClick={() => handleClick('stars')}>
+                <th
+                  className={
+                    selectedCategory === 'stars'
+                      ? 'selected category'
+                      : 'category'
+                  }
+                  onClick={() => handleClick('stars')}
+                >
                   Stars
+                  {selectedCategory === 'stars' && !toggles.stars ? (
+                    <> &#9660;</>
+                  ) : (
+                    ''
+                  )}
+                  {selectedCategory === 'stars' && toggles.stars ? (
+                    <> &#9650;</>
+                  ) : (
+                    ''
+                  )}
                 </th>
-                <th className="category" onClick={() => handleClick('issues')}>
+                <th
+                  className={
+                    selectedCategory === 'issues'
+                      ? 'selected category'
+                      : 'category'
+                  }
+                  onClick={() => handleClick('issues')}
+                >
                   Issues (open)
+                  {selectedCategory === 'issues' && !toggles.issues ? (
+                    <> &#9660;</>
+                  ) : (
+                    ''
+                  )}
+                  {selectedCategory === 'issues' && toggles.issues ? (
+                    <> &#9650;</>
+                  ) : (
+                    ''
+                  )}
                 </th>
               </tr>
             </thead>
