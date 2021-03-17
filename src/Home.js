@@ -27,10 +27,6 @@ const Home = (props) => {
     getEmberForksStarsIssues();
     getVueForksStarsIssues();
 
-    //initial score calculation and sort
-    calculateScores();
-    sortByCondition(true, 'score');
-
     //continous API calls every 5 min. (300000ms);
     setInterval(() => {
       getReactForksStarsIssues();
