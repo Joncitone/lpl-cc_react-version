@@ -66,13 +66,18 @@ const Home = (props) => {
     const scoreVals = frameworks.map((frmwrk) => {
       return {
         name: frmwrk.name,
-        score:
-          Math.round(frmwrk.forks / 1000) +
-          Math.round(frmwrk.stars / 10000) +
-          Math.round(frmwrk.issues / 1000),
+        score: calculateFrameworkScore(frmwrk),
       };
     });
     setScores([...scoreVals]);
+  }
+
+  function calculateFrameworkScore(frmwrk) {
+    return (
+      Math.round(frmwrk.forks / 1000) +
+      Math.round(frmwrk.stars / 10000) +
+      Math.round(frmwrk.issues / 1000)
+    );
   }
 
   function sortByCondition(toggle, condition) {
@@ -220,11 +225,7 @@ const Home = (props) => {
                   <td>
                     {framework.name[0].toUpperCase() + framework.name.slice(1)}
                   </td>
-                  <td>
-                    {Math.round(framework.forks / 1000) +
-                      Math.round(framework.stars / 10000) +
-                      Math.round(framework.issues / 1000)}
-                  </td>
+                  <td>{calculateFrameworkScore(framework)}</td>
                   <td>{framework.forks}</td>
                   <td>{framework.stars}</td>
                   <td>{framework.issues}</td>
