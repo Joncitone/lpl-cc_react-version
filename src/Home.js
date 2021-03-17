@@ -27,8 +27,17 @@ const Home = (props) => {
     getEmberForksStarsIssues();
     getVueForksStarsIssues();
 
+    //initial score calculation and sort
     calculateScores();
     sortByCondition(true, 'score');
+
+    //continous API calls every 5 min. (300000ms);
+    setInterval(() => {
+      getReactForksStarsIssues();
+      getAngularForksStarsIssues();
+      getEmberForksStarsIssues();
+      getVueForksStarsIssues();
+    }, 300000);
   }, []);
 
   const [frameworks, setFrameworks] = useState([react, angular, ember, vue]);
@@ -232,6 +241,13 @@ const Home = (props) => {
       <br />
       <footer>
         <p>made with React by Jonathan Arreola</p>
+        <p>
+          see my{' '}
+          <a href="https://joncitone.github.io/launchpad-lab_coding-challenge">
+            Vanilla JS
+          </a>{' '}
+          version
+        </p>
       </footer>
       <script type="module" src="js/main.js"></script>
     </div>
