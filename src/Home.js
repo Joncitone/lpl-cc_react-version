@@ -97,7 +97,6 @@ const Home = (props) => {
           : a[condition] - b[condition];
       });
     }
-    console.log(frameworks);
     setFrameworks([...sortedFrameworks]);
   }
 
