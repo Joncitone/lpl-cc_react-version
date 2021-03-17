@@ -21,7 +21,21 @@ const Home = (props) => {
     getVueForksStarsIssues,
   } = props;
 
-  const codeText = '< coding challenge />';
+  useEffect(() => {
+    getReactForksStarsIssues();
+    getAngularForksStarsIssues();
+    getEmberForksStarsIssues();
+    getVueForksStarsIssues();
+
+    calculateScores();
+    sortByCondition(true, 'score');
+  }, []);
+
+  const [frameworks, setFrameworks] = useState([react, angular, ember, vue]);
+
+  useEffect(() => {
+    setFrameworks([react, angular, ember, vue]);
+  }, [react, angular, ember, vue]);
 
   const [toggles, setToggles] = useState({
     score: true,
@@ -29,15 +43,6 @@ const Home = (props) => {
     stars: true,
     issues: true,
   });
-
-  // const [frameworks, setFrameworks] = useState([
-  //   { name: 'react', forks: 33184, stars: 100, issues: 741, score: 45 },
-  //   { name: 'angular', forks: 22586, stars: 2000, issues: 439, score: 33 },
-  //   { name: 'ember', forks: 25456, stars: 50, issues: 3000, score: 11 },
-  //   { name: 'vue', forks: 30000, stars: 180000, issues: 550, score: 40 },
-  // ]);
-
-  const [frameworks, setFrameworks] = useState([react, angular, ember, vue]);
 
   const [scores, setScores] = useState([
     { name: 'react', score: 0 },
@@ -49,19 +54,10 @@ const Home = (props) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
-    //initial API call
-    getReactForksStarsIssues();
-    getAngularForksStarsIssues();
-    getEmberForksStarsIssues();
-    getVueForksStarsIssues();
+    calculateScores();
+  }, [frameworks]);
 
-    //initial sorting based on score
-    setTimeout(() => {
-      sortByCondition(true, 'score');
-    }, 3000);
-  }, []);
-
-  useEffect(() => {
+  function calculateScores() {
     const scoreVals = frameworks.map((frmwrk) => {
       return {
         name: frmwrk.name,
@@ -72,18 +68,16 @@ const Home = (props) => {
       };
     });
     setScores([...scoreVals]);
-  }, [frameworks]);
+  }
 
   function sortByCondition(toggle, condition) {
     let sortedFrameworks;
-
     if (condition === 'score') {
       const sortedScores = scores.sort((a, b) => {
         return toggle
           ? b[condition] - a[condition]
           : a[condition] - b[condition];
       });
-      // sort frameworks in same order as sorted array
       sortedFrameworks = [
         frameworks.find((f) => f.name === sortedScores[0].name),
         frameworks.find((f) => f.name === sortedScores[1].name),
@@ -103,7 +97,10 @@ const Home = (props) => {
   function handleClick(category) {
     const prevToggle = toggles[category];
     setToggles({
-      ...toggles,
+      score: true,
+      forks: true,
+      stars: true,
+      issues: true,
       [category]: !prevToggle,
     });
 
@@ -111,7 +108,7 @@ const Home = (props) => {
 
     sortByCondition(toggles[category], category);
   }
-
+  const codeText = '< coding challenge />';
   return (
     <div>
       <header>
@@ -213,23 +210,21 @@ const Home = (props) => {
               </tr>
             </thead>
             <tbody>
-              {frameworks &&
-                frameworks.map((framework, index) => (
-                  <tr key={index}>
-                    <td>
-                      {framework.name[0].toUpperCase() +
-                        framework.name.slice(1)}
-                    </td>
-                    <td>
-                      {Math.round(framework.forks / 1000) +
-                        Math.round(framework.stars / 10000) +
-                        Math.round(framework.issues / 1000)}
-                    </td>
-                    <td>{framework.forks}</td>
-                    <td>{framework.stars}</td>
-                    <td>{framework.issues}</td>
-                  </tr>
-                ))}
+              {frameworks.map((framework, index) => (
+                <tr key={index}>
+                  <td>
+                    {framework.name[0].toUpperCase() + framework.name.slice(1)}
+                  </td>
+                  <td>
+                    {Math.round(framework.forks / 1000) +
+                      Math.round(framework.stars / 10000) +
+                      Math.round(framework.issues / 1000)}
+                  </td>
+                  <td>{framework.forks}</td>
+                  <td>{framework.stars}</td>
+                  <td>{framework.issues}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
