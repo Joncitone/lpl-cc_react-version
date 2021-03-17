@@ -4,6 +4,10 @@
 
 ### TBD
 
+## Vanilla JS Version
+
+https://github.com/joncitone/launchpad-lab_coding-challenge
+
 ## Setup
 
 1. ### Fork or Clone the Repo
