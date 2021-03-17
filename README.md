@@ -25,19 +25,13 @@ https://github.com/joncitone/launchpad-lab_coding-challenge
 3. ### Install Dependencies
 
 ```
-  npm install
+  yarn install
 ```
 
 4. ### Launching in the Browser
 
 ```
-  npm start
-```
-
-5. ### Running Tests
-
-```
-  npm test
+  yarn start
 ```
 
 ---
@@ -46,18 +40,24 @@ https://github.com/joncitone/launchpad-lab_coding-challenge
 
 - React
 
+  - Functional Components & JSX
+  - Prop Types for key state information
+
 - Redux
+
+  - Axios & Thunk Middleware
+
+- Heroku
+  - Deployed on Heroku
 
 ## Features
 
-- Project Board
-  - Kanban board to plan out the project
 - LaunchPad Lab styling
   - Proxima-Nova font
   - Blue linear gradient
   - Rocketship logo
 - Sorting with visual indicators for ASC/DESC
-  - Classic DOM manipulation
+  - Live update using hooks, handlers, and conditional rendering
 - Continuous API calls (every 5 minutes)
 
 ## Metrics & Rationale
